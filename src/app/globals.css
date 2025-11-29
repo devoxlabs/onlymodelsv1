@@ -1437,3 +1437,32 @@ section[id] {
   display: block;
 }
 
+/* Service detail light/dark fixes */
+.service-status-chip,
+.service-status-chip span,
+.service-growth-stat,
+.service-growth-stat .service-growth-icon {
+  color: rgb(var(--accent-primary));
+}
+[data-theme="dark"] .service-status-chip,
+[data-theme="dark"] .service-status-chip span,
+[data-theme="dark"] .service-growth-stat,
+[data-theme="dark"] .service-growth-stat .service-growth-icon {
+  color: #4ade80;
+}
+/* Coverage timeline light-mode overrides */
+[data-theme="light"] .coverage-status {
+  color: rgb(var(--accent-primary));
+}
+[data-theme="light"] .coverage-status-dot .coverage-status-ping,
+[data-theme="light"] .coverage-status-dot .coverage-status-core {
+  background-color: rgb(var(--accent-primary));
+}
+[data-theme="light"] .coverage-status-dot .coverage-status-ping {
+  opacity: 0.35;
+}
+/* Strategy checklist light theme */
+[data-theme="light"] .strategy-check {
+  background-color: rgb(var(--accent-primary) / 0.12);
+  color: rgb(var(--accent-primary));
+}
