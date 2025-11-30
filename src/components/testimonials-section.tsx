@@ -23,7 +23,7 @@ const videoTestimonials: VideoTestimonial[] = [
     quote: "How we rebuilt her chat scripts and pricing ladder so every fan felt VIP.",
     embedUrl: "https://drive.google.com/file/d/1_TqD7PWfddCtrPeY4Y5acs6_oABlUh2B/preview?autoplay=1&mute=1",
     aspectPadding: "177.778%",
-    length: "1:08",
+    length: "1:14",
     durationMs: 68000,
   },
   {
@@ -33,7 +33,7 @@ const videoTestimonials: VideoTestimonial[] = [
     quote: "Daily reports, proactive upsells, and the calm confidence of a 24/7 team.",
     embedUrl: "https://drive.google.com/file/d/1bLODuPjQg1lpyV-iRwGyd_xOm-HwIgxa/preview?autoplay=1&mute=1",
     aspectPadding: "179.272%",
-    length: "0:52",
+    length: "0:39",
     durationMs: 52000,
   },
   {
@@ -43,7 +43,7 @@ const videoTestimonials: VideoTestimonial[] = [
     quote: "How a multi-creator roster scaled once the backend, compliance, and growth stack were aligned.",
     embedUrl: "https://drive.google.com/file/d/1jEWBSSzHe25gHywFPp2rO6jYBfi0m0F6/preview?autoplay=1&mute=1",
     aspectPadding: "177.778%",
-    length: "1:32",
+    length: "0:57",
     durationMs: 92000,
   },
 ];
