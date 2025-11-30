@@ -201,7 +201,7 @@ export function HeroVisuals() {
                     x: payoutCardX,
                     y: payoutCardY,
                     right: "10%",
-                    bottom: "6%",
+                    bottom: "15%",
                 }}
                 initial={{ opacity: 0, y: 120 }}
                 animate={{ opacity: 1, y: 0 }}

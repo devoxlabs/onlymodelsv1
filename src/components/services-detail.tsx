@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, type Variants, type Transition } from "framer-motion";
 import { Check, Lock, MessageCircle, ShieldCheck, TrendingUp, User } from "lucide-react";
 
 const services = [
@@ -45,12 +45,14 @@ const services = [
     },
 ];
 
-const createHeadingEntryVariants = (direction: "left" | "right") => ({
+const headingEntryTransition: Transition = { duration: 0.65, ease: "easeOut" };
+
+const createHeadingEntryVariants = (direction: "left" | "right"): Variants => ({
     hidden: { opacity: 0, x: direction === "left" ? -40 : 40 },
     visible: {
         opacity: 1,
         x: 0,
-        transition: { duration: 0.65, ease: "easeOut" },
+        transition: { ...headingEntryTransition },
     },
 });
 
