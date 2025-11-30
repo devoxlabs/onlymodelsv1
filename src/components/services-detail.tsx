@@ -45,6 +45,15 @@ const services = [
     },
 ];
 
+const createHeadingEntryVariants = (direction: "left" | "right") => ({
+    hidden: { opacity: 0, x: direction === "left" ? -40 : 40 },
+    visible: {
+        opacity: 1,
+        x: 0,
+        transition: { duration: 0.65, ease: "easeOut" },
+    },
+});
+
 function ChatInterface() {
     return (
         <div className="relative h-full w-full overflow-hidden rounded-3xl border border-border/40 dark:border-white/10 bg-white dark:bg-black/20 p-6 shadow-[0_20px_60px_rgba(var(--accent-primary),0.12)] dark:shadow-none backdrop-blur-md">
@@ -180,6 +189,7 @@ export function ServicesDetail() {
         <section className="relative isolate overflow-hidden px-4 py-24 sm:px-6 lg:px-8 lg:py-32">
             <div className="mx-auto max-w-6xl space-y-32">
                 {services.map((service, index) => {
+                    const headingDirection = index % 2 === 0 ? "right" : "left";
                     return (
                         <motion.div
                             key={service.title}
@@ -209,6 +219,10 @@ export function ServicesDetail() {
                                     </div>
                                     <motion.h3
                                         className="text-3xl font-bold leading-tight text-accent sm:text-4xl lg:text-5xl"
+                                        initial="hidden"
+                                        whileInView="visible"
+                                        viewport={{ once: true, amount: 0.6 }}
+                                        variants={createHeadingEntryVariants(headingDirection)}
                                         animate={{
                                             textShadow: [
                                                 "0 0 0px rgba(236,72,153,0)",
