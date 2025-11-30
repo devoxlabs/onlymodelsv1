@@ -8,15 +8,33 @@ const creatorMetrics = [
     { label: "Tips", value: "$178,990.12", accent: "bg-accent/60" },
 ];
 
-const graphBars = [
-    { x: 20, height: 35 },
-    { x: 70, height: 55 },
-    { x: 120, height: 75 },
-    { x: 170, height: 95 },
-    { x: 220, height: 110 },
-];
+const premiumGrowthSeries = [32, 44, 39, 50, 62, 70, 84, 96, 108];
 
 export function TopCreatorsSection() {
+    const chartWidth = 320;
+    const chartHeight = 180;
+    const chartPadding = 24;
+    const availableWidth = chartWidth - chartPadding * 2;
+    const maxValue = Math.max(...premiumGrowthSeries);
+    const minValue = Math.min(...premiumGrowthSeries);
+    const valueRange = maxValue - minValue || 1;
+    const toX = (index: number) => chartPadding + (index / (premiumGrowthSeries.length - 1)) * availableWidth;
+    const toY = (value: number) =>
+        chartHeight - chartPadding - ((value - minValue) / valueRange) * (chartHeight - chartPadding * 2);
+
+    const premiumPoints = premiumGrowthSeries.map((value, index) => ({
+        x: toX(index),
+        y: toY(value),
+        value,
+    }));
+
+    const premiumPath = premiumPoints.map((point, index) => `${index === 0 ? "M" : "L"} ${point.x} ${point.y}`).join(" ");
+    const premiumArea = [
+        `M ${premiumPoints[0].x} ${chartHeight - chartPadding}`,
+        ...premiumPoints.map((point) => `L ${point.x} ${point.y}`),
+        `L ${premiumPoints[premiumPoints.length - 1].x} ${chartHeight - chartPadding}`,
+        "Z",
+    ].join(" ");
     return (
         <section
             id="growth"
@@ -92,43 +110,93 @@ export function TopCreatorsSection() {
                     <div className="top-creators-card relative w-full max-w-sm rounded-[32px] border border-white/10 bg-gradient-to-b from-background/80 via-surface/70 to-surface/40 p-6 shadow-2xl shadow-black/40 backdrop-blur-lg md:max-w-md lg:max-w-lg">
                         <div className="absolute -inset-1 rounded-[34px] bg-gradient-to-tr from-accent/30 via-transparent to-accent-secondary/30 opacity-40 blur-2xl" />
                         <div className="relative space-y-6">
-                            <div className="top-creators-card-graph rounded-2xl border border-white/10 bg-background/60 p-4">
-                                <svg viewBox="0 0 260 140" className="h-36 w-full">
-                                    <defs>
-                                        <linearGradient id="barGradient" x1="0%" y1="100%" x2="0%" y2="0%">
-                                            <stop offset="0%" stopColor="rgba(255,105,180,0.15)" />
-                                            <stop offset="80%" stopColor="rgba(255,105,180,0.4)" />
-                                            <stop offset="100%" stopColor="rgba(255,192,203,0.8)" />
-                                        </linearGradient>
-                                        <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                                            <stop offset="0%" stopColor="rgba(255,105,180,0.6)" />
-                                            <stop offset="100%" stopColor="rgba(255,192,203,0.95)" />
-                                        </linearGradient>
-                                    </defs>
-                                    <g>
-                                        {graphBars.map((bar) => (
-                                            <rect
-                                                key={bar.x}
-                                                x={bar.x}
-                                                y={130 - bar.height}
-                                                width={25}
-                                                height={bar.height}
-                                                rx={12}
-                                                fill="url(#barGradient)"
-                                                className="drop-shadow-[0_10px_25px_rgba(255,105,180,0.35)]"
+                            <div className="top-creators-card-graph rounded-[28px] border border-white/10 bg-gradient-to-b from-background/85 to-surface/70 p-5 shadow-[0_30px_80px_rgba(0,0,0,0.35)]">
+                                <div className="flex items-center justify-between gap-4">
+                                    <div>
+                                        <p className="text-[11px] uppercase tracking-[0.4em] text-muted">Studio momentum</p>
+                                        <p className="mt-1 text-3xl font-semibold text-foreground">$1.2M run-rate</p>
+                                    </div>
+                                    <div className="rounded-2xl border border-white/10 bg-white/10 px-4 py-2 text-right text-xs uppercase tracking-[0.4em] text-muted shadow-lg shadow-black/30">
+                                        <span className="block text-foreground text-base font-semibold leading-tight">+47%</span>
+                                        <span>QoQ lift</span>
+                                    </div>
+                                </div>
+                                <div className="relative mt-6">
+                                    <svg viewBox={`0 0 ${chartWidth} ${chartHeight}`} className="h-40 w-full">
+                                        <defs>
+                                            <linearGradient id="premiumArea" x1="0%" y1="0%" x2="0%" y2="100%">
+                                                <stop offset="0%" stopColor="rgba(255,105,180,0.35)" />
+                                                <stop offset="100%" stopColor="rgba(17,24,39,0)" />
+                                            </linearGradient>
+                                            <linearGradient id="premiumLine" x1="0%" y1="0%" x2="100%" y2="0%">
+                                                <stop offset="0%" stopColor="rgba(255,255,255,0.8)" />
+                                                <stop offset="100%" stopColor="rgba(255,105,180,1)" />
+                                            </linearGradient>
+                                            <linearGradient id="premiumLineLight" x1="0%" y1="0%" x2="100%" y2="0%">
+                                                <stop offset="0%" stopColor="rgba(236,72,153,1)" />
+                                                <stop offset="100%" stopColor="rgba(219,39,119,1)" />
+                                            </linearGradient>
+                                        </defs>
+                                        <path
+                                            d={premiumArea}
+                                            fill="url(#premiumArea)"
+                                            className="dark:block hidden"
+                                        />
+                                        <path
+                                            d={premiumArea}
+                                            fill="rgba(236,72,153,0.25)"
+                                            className="dark:hidden block"
+                                        />
+                                        <path
+                                            d={premiumPath}
+                                            fill="none"
+                                            stroke="url(#premiumLine)"
+                                            strokeWidth={4}
+                                            strokeLinecap="round"
+                                            className="drop-shadow-[0_10px_30px_rgba(255,105,180,0.45)] dark:block hidden"
+                                        />
+                                        <path
+                                            d={premiumPath}
+                                            fill="none"
+                                            stroke="url(#premiumLineLight)"
+                                            strokeWidth={4}
+                                            strokeLinecap="round"
+                                            className="drop-shadow-[0_10px_30px_rgba(255,0,114,0.35)] dark:hidden block"
+                                        />
+                                        {premiumPoints.map((point, index) => (
+                                            <circle
+                                                key={index}
+                                                cx={point.x}
+                                                cy={point.y}
+                                                r={4}
+                                                fill="rgb(255,255,255)"
+                                                stroke="rgba(255,105,180,0.5)"
+                                                strokeWidth={2}
                                             />
                                         ))}
-                                    </g>
-                                    <path
-                                        d="M20 120 L 45 110 L 82 90 L 120 70 L 170 45 L 220 25"
-                                        fill="none"
-                                        stroke="url(#lineGradient)"
-                                        strokeWidth={5}
-                                        strokeLinecap="round"
-                                        className="drop-shadow-[0_0_20px_rgba(255,192,203,0.4)]"
-                                    />
-                                    <circle cx="220" cy="25" r="6" fill="url(#lineGradient)" />
-                                </svg>
+                                    </svg>
+                                    <div className="absolute inset-x-0 -bottom-4 flex items-center justify-between text-xs uppercase tracking-[0.4em] text-muted-foreground">
+                                        <span>Launch</span>
+                                        <span>Scale</span>
+                                        <span>Peak</span>
+                                    </div>
+                                </div>
+                                <div className="mt-8 flex flex-wrap gap-4 text-sm font-medium text-muted">
+                                    <div className="flex flex-1 items-center justify-between rounded-2xl border border-white/5 bg-background/60 px-4 py-3">
+                                        <div>
+                                            <p className="text-xs uppercase tracking-[0.35em] text-muted-foreground">Retention</p>
+                                            <p className="text-xl font-semibold text-foreground">92%</p>
+                                        </div>
+                                        <span className="text-accent text-xs font-semibold uppercase tracking-[0.4em]">Elite</span>
+                                    </div>
+                                    <div className="flex flex-1 items-center justify-between rounded-2xl border border-white/5 bg-background/60 px-4 py-3">
+                                        <div>
+                                            <p className="text-xs uppercase tracking-[0.35em] text-muted-foreground">Avg order</p>
+                                            <p className="text-xl font-semibold text-foreground">$187</p>
+                                        </div>
+                                        <span className="text-accent-secondary text-xs font-semibold uppercase tracking-[0.4em]">+33%</span>
+                                    </div>
+                                </div>
                             </div>
 
                             <div className="flex items-center justify-center">

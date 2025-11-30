@@ -66,16 +66,46 @@ const growthFeatures = [
     },
 ];
 
-const headingEntryTransition: Transition = { duration: 0.65, ease: "easeOut" };
+const headingEntryTransition: Transition = {
+    duration: 1.05,
+    ease: [0.22, 1, 0.36, 1],
+};
 
 const createHeadingEntryVariants = (direction: "left" | "right"): Variants => ({
-    hidden: { opacity: 0, x: direction === "left" ? -40 : 40 },
+    hidden: {
+        opacity: 0,
+        x: direction === "left" ? -45 : 45,
+        y: 18,
+        scale: 0.92,
+        rotateX: 25,
+        filter: "blur(16px)",
+    },
     visible: {
         opacity: 1,
         x: 0,
+        y: 0,
+        scale: 1,
+        rotateX: 0,
+        filter: "blur(0px)",
         transition: { ...headingEntryTransition },
     },
 });
+
+const wordContainerVariants: Variants = {
+    hidden: {},
+    visible: {
+        transition: { staggerChildren: 0.08, delayChildren: 0.12 },
+    },
+};
+
+const wordVariants: Variants = {
+    hidden: { y: "150%", opacity: 0 },
+    visible: {
+        y: "0%",
+        opacity: 1,
+        transition: { duration: 0.45, ease: "easeOut" },
+    },
+};
 
 function StrategyBoard() {
     return (
@@ -261,27 +291,45 @@ export function ComprehensiveGrowth() {
                                     <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-accent">
                                         Growth Pillar {index + 1}
                                     </div>
-                                    <motion.h3
-                                        className="text-3xl font-bold leading-tight text-accent sm:text-4xl lg:text-5xl"
-                                        initial="hidden"
-                                        whileInView="visible"
-                                        viewport={{ once: true, amount: 0.6 }}
-                                        variants={createHeadingEntryVariants(headingDirection)}
-                                        animate={{
-                                            textShadow: [
-                                                "0 0 0px rgba(236,72,153,0)",
-                                                "0 0 15px rgba(236,72,153,0.5)",
-                                                "0 0 0px rgba(236,72,153,0)"
-                                            ]
-                                        }}
-                                        transition={{
-                                            duration: 3,
-                                            repeat: Infinity,
-                                            ease: "easeInOut"
-                                        }}
-                                    >
-                                        {feature.title}
-                                    </motion.h3>
+                                    <motion.div className="relative inline-flex">
+                                        <motion.h3
+                                            className="text-3xl font-bold leading-tight text-accent sm:text-4xl lg:text-5xl"
+                                            initial="hidden"
+                                            whileInView="visible"
+                                            viewport={{ once: true, amount: 0.6 }}
+                                            variants={createHeadingEntryVariants(headingDirection)}
+                                            animate={{
+                                                textShadow: [
+                                                    "0 0 0px rgba(236,72,153,0)",
+                                                    "0 0 15px rgba(236,72,153,0.5)",
+                                                    "0 0 0px rgba(236,72,153,0)"
+                                                ]
+                                            }}
+                                            transition={{
+                                                duration: 3,
+                                                repeat: Infinity,
+                                                ease: "easeInOut"
+                                            }}
+                                        >
+                                            <motion.span
+                                                className="inline-flex flex-wrap gap-y-1"
+                                                initial="hidden"
+                                                whileInView="visible"
+                                                viewport={{ once: true, amount: 0.6 }}
+                                                variants={wordContainerVariants}
+                                            >
+                                                {feature.title.split(" ").map((word, idx) => (
+                                                    <motion.span
+                                                        key={`${feature.title}-${idx}`}
+                                                        variants={wordVariants}
+                                                        className="inline-block pr-2"
+                                                    >
+                                                        {word}
+                                                    </motion.span>
+                                                ))}
+                                            </motion.span>
+                                        </motion.h3>
+                                    </motion.div>
                                 </div>
                                 <div className="space-y-6 text-lg leading-relaxed text-muted-foreground">
                                     {feature.content.map((paragraph, i) => (
