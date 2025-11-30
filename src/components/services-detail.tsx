@@ -124,10 +124,10 @@ function SecurityShield() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 }}
-                className="service-status-chip absolute bottom-6 left-6 flex items-center gap-2 rounded-full border border-border/40 bg-white px-3 py-1 text-xs font-semibold shadow-sm dark:border-green-500/30 dark:bg-green-500/10"
+                className="service-status-chip absolute bottom-6 left-6 flex items-center gap-2 rounded-full border border-border/40 bg-white px-3 py-1 text-xs font-semibold shadow-sm dark:border-accent/30 dark:bg-accent/10"
             >
-                <div className="service-status-dot h-1.5 w-1.5 rounded-full bg-green-500 animate-pulse dark:bg-green-500" />
-                <span className="service-status-text text-green-500 dark:text-green-400">Active Protection</span>
+                <div className="service-status-dot h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
+                <span className="service-status-text text-accent">Active Protection</span>
             </motion.div>
         </div>
     );

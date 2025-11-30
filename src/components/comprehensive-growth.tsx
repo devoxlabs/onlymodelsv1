@@ -85,9 +85,9 @@ function StrategyBoard() {
                         initial={{ opacity: 0, x: -20 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ delay: i * 0.2 }}
-                        className="flex items-center gap-3 p-3 rounded-xl bg-white/80 dark:bg-white/5 shadow-inner shadow-black/5"
+                        className="flex items-center gap-3 p-3 rounded-xl bg-white/80 shadow-[0_12px_30px_rgba(236,72,153,0.12)] dark:bg-white/5 dark:shadow-none"
                     >
-                        <div className="strategy-check flex items-center justify-center w-6 h-6 rounded-full bg-green-500/20 text-green-500 dark:bg-green-500/20 dark:text-green-400">
+                        <div className="strategy-check flex items-center justify-center w-6 h-6 rounded-full bg-accent/15 text-accent">
                             <Check className="w-3.5 h-3.5" />
                         </div>
                         <span className="text-sm font-medium">{item}</span>
@@ -101,57 +101,43 @@ function StrategyBoard() {
 function GrowthRoadmap() {
     return (
         <div className="relative h-full w-full overflow-hidden rounded-3xl border border-black/10 dark:border-white/10 bg-white/50 dark:bg-black/20 p-6 backdrop-blur-md">
-            <div className="absolute inset-0 bg-gradient-to-tr from-transparent to-accent/5" />
+            <div className="absolute inset-0 bg-gradient-to-tr from-white/85 via-white/40 to-white/0 dark:from-accent/5 dark:via-transparent dark:to-accent-secondary/10" />
 
-            <div className="flex items-center gap-3 mb-8">
-                <div className="p-2 rounded-lg bg-accent/10">
-                    <Map className="w-6 h-6 text-accent" />
+            <div className="flex items-center justify-between mb-8">
+                <div className="flex items-center gap-3">
+                    <div className="p-2 rounded-lg bg-accent/10">
+                        <Map className="w-6 h-6 text-accent" />
+                    </div>
+                    <div>
+                        <div className="text-sm font-medium text-muted-foreground">Growth Roadmap</div>
+                        <p className="text-xs uppercase tracking-[0.35em] text-muted-foreground/70">Weekly lift</p>
+                    </div>
                 </div>
-                <div className="font-semibold">Growth Roadmap</div>
+                <div className="flex items-center gap-1 text-sm font-bold text-accent">
+                    <TrendingUp className="h-4 w-4" />
+                    +142%
+                </div>
             </div>
 
-            <div className="relative h-32">
-                {/* Path Line */}
-                <svg className="absolute inset-0 w-full h-full overflow-visible">
-                    <motion.path
-                        d="M 20,80 C 80,80 100,20 180,20 C 260,20 280,60 340,60"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="3"
-                        className="text-gray-300 dark:text-white/10"
-                    />
-                    <motion.path
-                        d="M 20,80 C 80,80 100,20 180,20 C 260,20 280,60 340,60"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="3"
-                        className="text-accent"
-                        initial={{ pathLength: 0 }}
-                        whileInView={{ pathLength: 1 }}
-                        transition={{ duration: 2, ease: "easeInOut" }}
-                    />
-                </svg>
-
-                {/* Milestones */}
-                {[
-                    { label: "Start", x: "0%", y: "80%" },
-                    { label: "10k", x: "50%", y: "20%" },
-                    { label: "100k", x: "100%", y: "60%" }
-                ].map((point, i) => (
+            <div className="flex h-48 items-end justify-between gap-2">
+                {[35, 55, 45, 72, 60, 82, 95].map((height, i) => (
                     <motion.div
                         key={i}
-                        className="absolute -translate-x-1/2 -translate-y-1/2"
-                        style={{ left: point.x, top: point.y }}
-                        initial={{ scale: 0 }}
-                        whileInView={{ scale: 1 }}
-                        transition={{ delay: 1 + (i * 0.5) }}
+                        initial={{ height: 0 }}
+                        whileInView={{ height: `${height}%` }}
+                        transition={{ duration: 0.9, delay: i * 0.08, ease: "easeOut" }}
+                        className="relative w-full rounded-t-xl bg-gradient-to-t from-accent-secondary to-accent shadow-[0_15px_40px_rgba(236,72,153,0.25)]"
                     >
-                        <div className="relative">
-                            <div className="w-4 h-4 rounded-full bg-accent ring-4 ring-white dark:ring-black" />
-                            <div className="absolute top-6 left-1/2 -translate-x-1/2 text-xs font-bold whitespace-nowrap">
-                                {point.label}
-                            </div>
-                        </div>
+                        {i === 6 && (
+                            <motion.div
+                                initial={{ opacity: 0, y: 12 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.8 }}
+                                className="absolute -top-8 left-1/2 -translate-x-1/2 rounded-full bg-accent px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.25em] text-white shadow-lg shadow-accent/30"
+                            >
+                                Peak
+                            </motion.div>
+                        )}
                     </motion.div>
                 ))}
             </div>
@@ -177,16 +163,16 @@ function CoverageTimeline() {
                     { shift: "Day Shift", time: "14:00 - 22:00", active: true },
                     { shift: "Night Shift", time: "22:00 - 06:00", active: true },
                 ].map((shift, i) => (
-                    <div key={i} className="flex items-center justify-between p-3 rounded-xl bg-white/80 dark:bg-white/5 shadow-inner shadow-black/5">
+                    <div key={i} className="flex items-center justify-between p-3 rounded-xl bg-white/80 shadow-[0_12px_30px_rgba(236,72,153,0.12)] dark:bg-white/5 dark:shadow-none">
                         <div>
                             <div className="text-sm font-medium">{shift.shift}</div>
                             <div className="text-xs text-muted-foreground">{shift.time}</div>
                         </div>
                         <div className="flex items-center gap-2">
-                            <span className="coverage-status text-xs font-semibold text-green-500 dark:text-green-400">Active</span>
+                            <span className="coverage-status text-xs font-semibold text-accent">Active</span>
                             <div className="coverage-status-dot relative w-2 h-2">
-                                <div className="coverage-status-ping absolute inset-0 rounded-full bg-green-500/40 animate-ping dark:bg-green-400/40" />
-                                <div className="coverage-status-core relative w-full h-full rounded-full bg-green-500 dark:bg-green-400" />
+                                <div className="coverage-status-ping absolute inset-0 rounded-full bg-accent/40 animate-ping" />
+                                <div className="coverage-status-core relative w-full h-full rounded-full bg-accent" />
                             </div>
                         </div>
                     </div>

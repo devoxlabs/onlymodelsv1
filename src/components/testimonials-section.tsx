@@ -12,35 +12,39 @@ type VideoTestimonial = {
   embedUrl: string;
   aspectPadding: string;
   length: string;
+  durationMs: number;
 };
 
 const videoTestimonials: VideoTestimonial[] = [
   {
-    creator: "Lena F.",
+    creator: "Lisa",
     role: "Top 0.5% Creator",
     stat: "+420% launch revenue",
     quote: "How we rebuilt her chat scripts and pricing ladder so every fan felt VIP.",
     embedUrl: "https://streamable.com/e/yeq6ji?autoplay=1",
     aspectPadding: "177.778%",
     length: "1:08",
+    durationMs: 68000,
   },
   {
-    creator: "Mara V.",
+    creator: "Lena F.",
     role: "chat-first brand",
     stat: "+38% avg order value",
     quote: "Daily reports, proactive upsells, and the calm confidence of a 24/7 team.",
     embedUrl: "https://streamable.com/e/4d0v31?autoplay=1",
     aspectPadding: "179.272%",
     length: "0:52",
+    durationMs: 52000,
   },
   {
-    creator: "Nyx Collective",
+    creator: "Mara V.",
     role: "3 creator studio",
     stat: "0 ➜ Top 3% in 60 days",
     quote: "How a multi-creator roster scaled once the backend, compliance, and growth stack were aligned.",
     embedUrl: "https://streamable.com/e/hl4732?autoplay=1",
     aspectPadding: "177.778%",
     length: "1:32",
+    durationMs: 92000,
   },
 ];
 
@@ -69,12 +73,33 @@ export function TestimonialsSection() {
   const isVideoInView = useFramerInView(videoContainerRef, { amount: 0.5 });
   const isInView = useInView(containerRef, { once: true, amount: 0.2 });
   const controls = useAnimation();
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     if (isInView) {
       controls.start("visible");
     }
   }, [controls, isInView]);
+
+  useEffect(() => {
+    if (!isVideoInView) {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+      }
+      return;
+    }
+
+    const duration = videoTestimonials[activeIndex].durationMs;
+    timerRef.current = setTimeout(() => {
+      setActiveIndex((prev) => (prev + 1) % videoTestimonials.length);
+    }, duration + 1000);
+
+    return () => {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+      }
+    };
+  }, [activeIndex, isVideoInView]);
 
   const headlineVariants = {
     hidden: { opacity: 0, y: 16 },
@@ -216,13 +241,14 @@ export function TestimonialsSection() {
                     key={item.creator}
                     type="button"
                     onClick={() => setActiveIndex(index)}
-                    className={`video-testimonial-pill relative flex items-center gap-4 rounded-2xl border px-4 py-4 text-left transition focus:outline-none focus-visible:ring-2 focus-visible:ring-accent ${isActive
+                    className={`video-testimonial-pill group relative flex items-center gap-4 rounded-2xl border px-4 py-4 text-left transition focus:outline-none focus-visible:ring-2 focus-visible:ring-accent ${isActive
                         ? "border-accent/40 bg-accent/10 shadow-[0_20px_60px_rgba(236,72,153,0.25)] text-foreground"
                         : "border-white/10 bg-white/5 text-foreground/80 hover:border-white/20 dark:bg-white/5"
                       }`}
                     aria-pressed={isActive}
+                    style={{ cursor: "pointer", transform: isActive ? "translateY(-2px)" : undefined }}
                   >
-                    <div className={`flex h-12 w-12 items-center justify-center rounded-2xl border ${isActive ? "border-accent/40 bg-accent/20 text-accent" : "border-white/10 bg-white/5 text-white/70"}`}>
+                    <div className={`flex h-12 w-12 items-center justify-center rounded-2xl border transition ${isActive ? "border-accent/40 bg-accent/20 text-accent" : "border-white/10 bg-white/5 text-white/70 group-hover:text-accent group-hover:border-accent/30"}`}>
                       <Play className="h-4 w-4" />
                     </div>
                     <div className="flex flex-1 flex-col">
