@@ -55,8 +55,10 @@ export default function RootLayout({
                 try {
                   const theme = localStorage.getItem('${THEME_STORAGE_KEY}') || 'dark';
                   document.documentElement.setAttribute('data-theme', theme);
+                  document.documentElement.classList.toggle('dark', theme === 'dark');
                 } catch (e) {
                   document.documentElement.setAttribute('data-theme', 'dark');
+                  document.documentElement.classList.add('dark');
                 }
               })();
             `,
