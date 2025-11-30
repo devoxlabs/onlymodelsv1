@@ -21,7 +21,7 @@ const videoTestimonials: VideoTestimonial[] = [
     role: "Top 0.5% Creator",
     stat: "+420% launch revenue",
     quote: "How we rebuilt her chat scripts and pricing ladder so every fan felt VIP.",
-    embedUrl: "https://streamable.com/e/yeq6ji?autoplay=1",
+    embedUrl: "https://drive.google.com/file/d/1_TqD7PWfddCtrPeY4Y5acs6_oABlUh2B/preview?autoplay=1&mute=1",
     aspectPadding: "177.778%",
     length: "1:08",
     durationMs: 68000,
@@ -31,7 +31,7 @@ const videoTestimonials: VideoTestimonial[] = [
     role: "chat-first brand",
     stat: "+38% avg order value",
     quote: "Daily reports, proactive upsells, and the calm confidence of a 24/7 team.",
-    embedUrl: "https://streamable.com/e/4d0v31?autoplay=1",
+    embedUrl: "https://drive.google.com/file/d/1bLODuPjQg1lpyV-iRwGyd_xOm-HwIgxa/preview?autoplay=1&mute=1",
     aspectPadding: "179.272%",
     length: "0:52",
     durationMs: 52000,
@@ -41,7 +41,7 @@ const videoTestimonials: VideoTestimonial[] = [
     role: "3 creator studio",
     stat: "0 ➜ Top 3% in 60 days",
     quote: "How a multi-creator roster scaled once the backend, compliance, and growth stack were aligned.",
-    embedUrl: "https://streamable.com/e/hl4732?autoplay=1",
+    embedUrl: "https://drive.google.com/file/d/1jEWBSSzHe25gHywFPp2rO6jYBfi0m0F6/preview?autoplay=1&mute=1",
     aspectPadding: "177.778%",
     length: "1:32",
     durationMs: 92000,
@@ -201,8 +201,11 @@ export function TestimonialsSection() {
                       <iframe
                         key={videoTestimonials[activeIndex].embedUrl}
                         src={videoTestimonials[activeIndex].embedUrl}
-                        allow="fullscreen;autoplay"
+                        allow="autoplay; fullscreen"
                         allowFullScreen
+                        loading="lazy"
+                        referrerPolicy="no-referrer"
+                        fetchPriority="low"
                         className="absolute left-0 top-0 h-full w-full rounded-[34px] border-0"
                         title={`${videoTestimonials[activeIndex].creator} testimonial`}
                       />
