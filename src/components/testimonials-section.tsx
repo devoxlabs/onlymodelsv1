@@ -205,7 +205,6 @@ export function TestimonialsSection() {
                         allowFullScreen
                         loading="lazy"
                         referrerPolicy="no-referrer"
-                        fetchPriority="low"
                         className="absolute left-0 top-0 h-full w-full rounded-[34px] border-0"
                         title={`${videoTestimonials[activeIndex].creator} testimonial`}
                       />
