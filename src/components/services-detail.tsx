@@ -244,14 +244,14 @@ export function ServicesDetail() {
                             </div>
 
                             {/* Content Side */}
-                            <div className="flex-1 space-y-8 text-center lg:text-left">
-                                <div className="flex flex-col items-center space-y-4 lg:items-start">
+                            <div className="flex-1 space-y-8 text-center">
+                                <div className="flex flex-col items-center space-y-4">
                                     <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-accent">
                                         Core Pillar {index + 1}
                                     </div>
                                     <motion.div className="relative inline-flex">
                                         <motion.h3
-                                            className="text-3xl font-bold leading-tight text-accent sm:text-4xl lg:text-5xl"
+                                            className="text-3xl font-bold leading-tight text-accent text-center sm:text-4xl lg:text-5xl lg:text-left"
                                             initial="hidden"
                                             whileInView="visible"
                                             viewport={{ once: true, amount: 0.6 }}
@@ -268,13 +268,13 @@ export function ServicesDetail() {
                                                 repeat: Infinity,
                                                 ease: "easeInOut"
                                             }}
-                                        >
-                                            <motion.span
-                                                className="inline-flex flex-wrap gap-y-1"
-                                                initial="hidden"
-                                                whileInView="visible"
-                                                viewport={{ once: true, amount: 0.6 }}
-                                                variants={wordContainerVariants}
+                                            >
+                                                <motion.span
+                                                    className="inline-flex flex-wrap gap-y-1 justify-center lg:justify-start"
+                                                    initial="hidden"
+                                                    whileInView="visible"
+                                                    viewport={{ once: true, amount: 0.6 }}
+                                                    variants={wordContainerVariants}
                                             >
                                                 {service.title.split(" ").map((word, idx) => (
                                                     <motion.span
