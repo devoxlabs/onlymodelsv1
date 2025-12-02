@@ -331,7 +331,7 @@ export function ComprehensiveGrowth() {
                                         </motion.h3>
                                     </motion.div>
                                 </div>
-                                <div className="space-y-6 text-lg leading-relaxed text-muted-foreground">
+                                <div className="space-y-3 text-lg leading-6 text-muted-foreground">
                                     {feature.content.map((paragraph, i) => (
                                         <p key={i}>{paragraph}</p>
                                     ))}

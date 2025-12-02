@@ -244,8 +244,8 @@ export function ServicesDetail() {
                             </div>
 
                             {/* Content Side */}
-                            <div className="flex-1 space-y-8 text-center">
-                                <div className="flex flex-col items-center space-y-4">
+                            <div className="flex-1 space-y-8 text-center lg:text-left">
+                                <div className="flex flex-col items-center space-y-4 lg:items-start">
                                     <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-accent">
                                         Core Pillar {index + 1}
                                     </div>
@@ -289,7 +289,7 @@ export function ServicesDetail() {
                                         </motion.h3>
                                     </motion.div>
                                 </div>
-                                <div className="space-y-6 text-lg leading-relaxed text-muted-foreground">
+                                <div className="space-y-3 text-lg leading-6 text-muted-foreground lg:text-left">
                                     {service.content.map((paragraph, i) => (
                                         <p key={i}>{paragraph}</p>
                                     ))}

@@ -36,14 +36,8 @@ export function HeroVisuals() {
     const payoutCardX = useTransform(x, [-300, 300], [-14, 14]);
     const payoutCardY = useTransform(y, [-300, 300], [-18, 18]);
 
-    const connectorOneX = useTransform(x, [-300, 300], [-6, 6]);
-    const connectorOneY = useTransform(y, [-300, 300], [-4, 4]);
-    const connectorTwoX = useTransform(x, [-300, 300], [-5, 5]);
-    const connectorTwoY = useTransform(y, [-300, 300], [-5, 5]);
-    const connectorThreeX = useTransform(x, [-300, 300], [-4, 4]);
-    const connectorThreeY = useTransform(y, [-300, 300], [-4, 4]);
-    const connectorFourX = useTransform(x, [-300, 300], [-5, 5]);
-    const connectorFourY = useTransform(y, [-300, 300], [-3, 3]);
+    const connectorImgX = useTransform(x, [-300, 300], [-8, 8]);
+    const connectorImgY = useTransform(y, [-300, 300], [-8, 8]);
 
     const rotateXSpring = useSpring(useTransform(y, [-300, 300], [5, -5]), springConfig);
     const rotateYSpring = useSpring(useTransform(x, [-300, 300], [-5, 5]), springConfig);
@@ -70,69 +64,24 @@ export function HeroVisuals() {
             className="hidden md:block relative h-[500px] w-full max-w-[600px] md:mx-auto xl:mx-0 origin-center scale-[0.65] sm:scale-75 md:h-[600px] md:scale-100"
             style={{ perspective: "1200px" }}
         >
-            {/* Pink connector lines */}
-            <div className="pointer-events-none absolute inset-0 z-10">
-                <motion.span
-                    className="absolute block h-[2px] border-t-2 border-dashed border-[#ff4da6]/50"
-                    style={{
-                        width: "200px",
-                        left: "45%",
-                        top: "21%",
-                        rotate: "15deg",
-                        x: connectorOneX,
-                        y: connectorOneY,
-                    }}
-                    initial={{ opacity: 0, scaleX: 0.7 }}
-                    animate={{ opacity: 1, scaleX: 1 }}
-                    transition={{ delay: 0.3, duration: 0.6, ease: "easeOut" }}
+            {/* Connector background */}
+            <motion.div
+                className="pointer-events-none absolute inset-0 z-[5] overflow-visible"
+                style={{ x: connectorImgX, y: connectorImgY }}
+                transition={{ type: "spring", stiffness: 120, damping: 18 }}
+            >
+                <Image
+                    src="/assets/hero-visual-images/connector.svg"
+                    alt="Hero connector background"
+                    fill
+                    className="object-contain opacity-90"
+                    priority
                 />
-                <motion.span
-                    className="absolute block h-[2px] border-t-2 border-dashed border-[#ff4da6]/50"
-                    style={{
-                        width: "280px",
-                        left: "3%",
-                        top: "21%",
-                        rotate: "-10deg",
-                        x: connectorTwoX,
-                        y: connectorTwoY,
-                    }}
-                    initial={{ opacity: 0, scaleX: 0.7 }}
-                    animate={{ opacity: 1, scaleX: 1 }}
-                    transition={{ delay: 0.4, duration: 0.6, ease: "easeOut" }}
-                />
-                <motion.span
-                    className="absolute block h-[2px] border-t-2 border-dashed border-[#ff4da6]/45"
-                    style={{
-                        width: "210px",
-                        right: "76%",
-                        top: "64%",
-                        rotate: "90deg",
-                        x: connectorThreeX,
-                        y: connectorThreeY,
-                    }}
-                    initial={{ opacity: 0, scaleY: 0.6 }}
-                    animate={{ opacity: 1, scaleY: 1 }}
-                    transition={{ delay: 0.5, duration: 0.6, ease: "easeOut" }}
-                />
-                <motion.span
-                    className="absolute block h-[2px] border-t-2 border-dashed border-[#ff4da6]/50"
-                    style={{
-                        width: "340px",
-                        left: "17%",
-                        top: "73%",
-                        rotate: "-10deg",
-                        x: connectorFourX,
-                        y: connectorFourY,
-                    }}
-                    initial={{ opacity: 0, scaleX: 0.7 }}
-                    animate={{ opacity: 1, scaleX: 1 }}
-                    transition={{ delay: 0.6, duration: 0.6, ease: "easeOut" }}
-                />
-            </div>
+            </motion.div>
 
             {/* Central creator photo */}
             <motion.div
-                className="absolute left-4 top-45 z-30 -translate-x-1/2 -translate-y-1/2 will-change-transform"
+                className="absolute md:left-[5.5rem] lg:left-18 top-55 z-30 -translate-x-1/2 -translate-y-1/2 will-change-transform "
                 style={{
                     x: modelCardX,
                     y: modelCardY,
@@ -143,7 +92,7 @@ export function HeroVisuals() {
                 animate={{ opacity: 1, scale: 1, rotateY: 0 }}
                 transition={{ duration: 1.1, ease: "easeOut", type: "spring", bounce: 0.35 }}
             >
-                <div className="relative h-[250px] w-[220px]">
+                <div className="relative h-[200px] w-[220px]">
                     <Image
                         src="/assets/hero-visual-images/model-card.webp"
                         alt="Creator snapshot"
@@ -157,12 +106,10 @@ export function HeroVisuals() {
 
             {/* Top creator stats card */}
             <motion.div
-                className="absolute z-40 will-change-transform"
+                className="absolute z-40 will-change-transform md:right-[48%] md:top-[52.5%] lg:right-[48%] lg:top-[51%]"
                 style={{
                     x: topCreatorCardX,
                     y: topCreatorCardY,
-                    left: "-18%",
-                    top: "58%",
                 }}
                 initial={{ opacity: 0, x: -80, y: 60 }}
                 animate={{ opacity: 1, x: 0, y: 0 }}
@@ -197,14 +144,14 @@ export function HeroVisuals() {
                 style={{
                     x: twitterCardX,
                     y: twitterCardY,
-                    right: "33%",
-                    top: "1%",
+                    right: "38%",
+                    top: "10%",
                 }}
                 initial={{ opacity: 0, x: 120, y: -60 }}
                 animate={{ opacity: 1, x: 0, y: 0 }}
                 transition={{ delay: 0.35, duration: 0.85, type: "spring", bounce: 0.45 }}
             >
-                <div className="relative h-[280px] w-[220px]">
+                <div className="relative h-[240px] w-[220px]">
                     <Image
                         src="/assets/hero-visual-images/twittercard.webp"
                         alt="Twitter analytics card"
@@ -213,7 +160,7 @@ export function HeroVisuals() {
                         className="object-contain drop-shadow-[0_30px_80px_rgba(0,0,0,0.28)]"
                     />
                     <motion.div
-                        className="absolute right-9 bottom-21 h-[85px] w-[150px]"
+                        className="absolute right-9 bottom-21 h-[65px] w-[150px]"
                         style={{ x: twitterGraphX, y: twitterGraphY }}
                     >
                         <Image
@@ -229,12 +176,10 @@ export function HeroVisuals() {
 
             {/* Messages revenue */}
             <motion.div
-                className="absolute z-30 will-change-transform"
+                className="absolute z-30 will-change-transform md:right-0 md:top-[27%] lg:right-[-5.5%] lg:top-[27%]"
                 style={{
                     x: messagesCardX,
                     y: messagesCardY,
-                    right: "-15%",
-                    top: "18%",
                 }}
                 initial={{ opacity: 0, x: 100, y: 40 }}
                 animate={{ opacity: 1, x: 0, y: 0 }}
@@ -265,12 +210,10 @@ export function HeroVisuals() {
 
             {/* Payout notification */}
             <motion.div
-                className="absolute z-20 will-change-transform"
+                className="absolute z-20 will-change-transform md:right-[12%] md:bottom-[7%] lg:right-[8.5%] lg:bottom-[10%]"
                 style={{
                     x: payoutCardX,
                     y: payoutCardY,
-                    right: "10%",
-                    bottom: "15%",
                 }}
                 initial={{ opacity: 0, y: 120 }}
                 animate={{ opacity: 1, y: 0 }}
