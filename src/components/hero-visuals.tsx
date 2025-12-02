@@ -151,20 +151,20 @@ export function HeroVisuals() {
                 animate={{ opacity: 1, x: 0, y: 0 }}
                 transition={{ delay: 0.35, duration: 0.85, type: "spring", bounce: 0.45 }}
             >
-                <div className="relative h-[240px] w-[220px]">
+                <div className="relative h-[220px] w-[220px]">
                     <Image
-                        src="/assets/hero-visual-images/twittercard.webp"
+                        src="/assets/hero-visual-images/xcard.png"
                         alt="Twitter analytics card"
                         fill
                         sizes="220px"
                         className="object-contain drop-shadow-[0_30px_80px_rgba(0,0,0,0.28)]"
                     />
                     <motion.div
-                        className="absolute right-9 bottom-21 h-[65px] w-[150px]"
+                        className="absolute right-9 bottom-15 h-[65px] w-[150px]"
                         style={{ x: twitterGraphX, y: twitterGraphY }}
                     >
                         <Image
-                            src="/assets/hero-visual-images/twittergraph.png"
+                            src="/assets/hero-visual-images/xgraph.png"
                             alt="Twitter line chart"
                             fill
                             sizes="150px"
@@ -219,9 +219,9 @@ export function HeroVisuals() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.55, duration: 0.9, type: "spring", bounce: 0.4 }}
             >
-                <div className="relative h-[150px] w-[170px]">
+                <div className="relative h-[130px] w-[170px]">
                     <Image
-                        src="/assets/hero-visual-images/payout-card.webp"
+                        src="/assets/hero-visual-images/payout1.png"
                         alt="Payout cleared badge"
                         fill
                         sizes="170px"
