@@ -97,7 +97,7 @@ export function HeroVisuals() {
                         src="/assets/hero-visual-images/model-card.webp"
                         alt="Creator snapshot"
                         fill
-                        className="object-contain drop-shadow-[0_30px_80px_rgba(0,0,0,0.35)]"
+                        className="object-contain dark:drop-shadow-[0_30px_80px_rgba(0,0,0,0.35)]"
                         sizes="(max-width: 768px) 220px, 320px"
                         priority
                     />
@@ -121,7 +121,7 @@ export function HeroVisuals() {
                         alt="Top creator badge"
                         fill
                         sizes="260px"
-                        className="object-contain drop-shadow-[0_25px_60px_rgba(0,0,0,0.25)]"
+                        className="object-contain dark:drop-shadow-[0_25px_60px_rgba(0,0,0,0.25)]"
                     />
                     <motion.div
                         className="absolute left-33 top-24 h-[90px] w-[110px]"
@@ -132,7 +132,7 @@ export function HeroVisuals() {
                             alt="Creator growth trend"
                             fill
                             sizes="110px"
-                            className="object-contain drop-shadow-[0_18px_40px_rgba(0,0,0,0.25)]"
+                            className="object-contain dark:drop-shadow-[0_18px_40px_rgba(0,0,0,0.25)]"
                         />
                     </motion.div>
                 </div>
@@ -157,7 +157,7 @@ export function HeroVisuals() {
                         alt="Twitter analytics card"
                         fill
                         sizes="220px"
-                        className="object-contain drop-shadow-[0_30px_80px_rgba(0,0,0,0.28)]"
+                        className="object-contain dark:drop-shadow-[0_30px_80px_rgba(0,0,0,0.28)]"
                     />
                     <motion.div
                         className="absolute right-9 bottom-15 h-[65px] w-[150px]"
@@ -168,7 +168,7 @@ export function HeroVisuals() {
                             alt="Twitter line chart"
                             fill
                             sizes="150px"
-                            className="object-contain drop-shadow-[0_18px_40px_rgba(0,0,0,0.25)]"
+                            className="object-contain dark:drop-shadow-[0_18px_40px_rgba(0,0,0,0.25)]"
                         />
                     </motion.div>
                 </div>
@@ -191,7 +191,7 @@ export function HeroVisuals() {
                         alt="Messages revenue card"
                         fill
                         sizes="280px"
-                        className="object-contain drop-shadow-[0_24px_60px_rgba(0,0,0,0.25)]"
+                        className="object-contain dark:drop-shadow-[0_24px_60px_rgba(0,0,0,0.25)]"
                     />
                     <motion.div
                         className="absolute -bottom-6 left-1/2 h-[90px] w-[180px] -translate-x-1/2"
@@ -202,7 +202,7 @@ export function HeroVisuals() {
                             alt="Messages revenue graph"
                             fill
                             sizes="180px"
-                            className="object-contain drop-shadow-[0_18px_40px_rgba(0,0,0,0.25)]"
+                            className="object-contain dark:drop-shadow-[0_18px_40px_rgba(0,0,0,0.25)]"
                         />
                     </motion.div>
                 </div>
@@ -225,7 +225,7 @@ export function HeroVisuals() {
                         alt="Payout cleared badge"
                         fill
                         sizes="170px"
-                        className="object-contain drop-shadow-[0_24px_60px_rgba(0,0,0,0.25)]"
+                        className="object-contain dark:drop-shadow-[0_24px_60px_rgba(0,0,0,0.25)]"
                     />
                 </div>
             </motion.div>
