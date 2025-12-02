@@ -74,7 +74,7 @@ export function HeroVisuals() {
                     src="/assets/hero-visual-images/connector.svg"
                     alt="Hero connector background"
                     fill
-                    className="object-contain opacity-90"
+                    className="object-contain opacity-90 brightness-150 dark:brightness-100"
                     priority
                 />
             </motion.div>
