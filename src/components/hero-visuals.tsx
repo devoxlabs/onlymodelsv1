@@ -81,7 +81,7 @@ export function HeroVisuals() {
 
             {/* Central creator photo */}
             <motion.div
-                className="absolute md:left-[5.5rem] lg:left-18 top-55 z-30 -translate-x-1/2 -translate-y-1/2 will-change-transform "
+                className="absolute md:left-[5.5rem] lg:left-16 top-50 z-30 -translate-x-1/2 -translate-y-1/2 will-change-transform "
                 style={{
                     x: modelCardX,
                     y: modelCardY,
@@ -94,7 +94,7 @@ export function HeroVisuals() {
             >
                 <div className="relative h-[200px] w-[220px]">
                     <Image
-                        src="/assets/hero-visual-images/model-card.webp"
+                        src="/assets/hero-visual-images/model.png"
                         alt="Creator snapshot"
                         fill
                         className="object-contain dark:drop-shadow-[0_30px_80px_rgba(0,0,0,0.35)]"
@@ -124,11 +124,11 @@ export function HeroVisuals() {
                         className="object-contain dark:drop-shadow-[0_25px_60px_rgba(0,0,0,0.25)]"
                     />
                     <motion.div
-                        className="absolute left-33 top-24 h-[90px] w-[110px]"
+                        className="absolute left-33 top-30 h-[45px] w-[110px]"
                         style={{ x: topCreatorGraphX, y: topCreatorGraphY }}
                     >
                         <Image
-                            src="/assets/hero-visual-images/top-creator-graph.png"
+                            src="/assets/hero-visual-images/top-creator-logo.png"
                             alt="Creator growth trend"
                             fill
                             sizes="110px"
@@ -151,16 +151,16 @@ export function HeroVisuals() {
                 animate={{ opacity: 1, x: 0, y: 0 }}
                 transition={{ delay: 0.35, duration: 0.85, type: "spring", bounce: 0.45 }}
             >
-                <div className="relative h-[220px] w-[220px]">
+                <div className="relative h-[238px] w-[220px]">
                     <Image
-                        src="/assets/hero-visual-images/xcard.png"
+                        src="/assets/hero-visual-images/xcard2.png"
                         alt="Twitter analytics card"
                         fill
                         sizes="220px"
                         className="object-contain dark:drop-shadow-[0_30px_80px_rgba(0,0,0,0.28)]"
                     />
                     <motion.div
-                        className="absolute right-9 bottom-15 h-[65px] w-[150px]"
+                        className="absolute right-9 bottom-19 h-[65px] w-[150px]"
                         style={{ x: twitterGraphX, y: twitterGraphY }}
                     >
                         <Image
