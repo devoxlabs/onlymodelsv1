@@ -92,9 +92,9 @@ export function HeroVisuals() {
                 animate={{ opacity: 1, scale: 1, rotateY: 0 }}
                 transition={{ duration: 1.1, ease: "easeOut", type: "spring", bounce: 0.35 }}
             >
-                <div className="relative h-[200px] w-[220px]">
+                <div className="relative h-[240px] w-[220px]">
                     <Image
-                        src="/assets/hero-visual-images/model.png"
+                        src="/assets/hero-visual-images/model-card.webp"
                         alt="Creator snapshot"
                         fill
                         className="object-contain dark:drop-shadow-[0_30px_80px_rgba(0,0,0,0.35)]"
